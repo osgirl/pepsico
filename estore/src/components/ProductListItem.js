@@ -4,6 +4,7 @@ const ProductListItem = props => (
     <h2>{props.product.title}</h2>
     <h3>{props.product.price}</h3>
     <h4>{props.product.stock}</h4>
+    <button onClick={() => props.onSell(props.product.id)}>SELL</button>
   </div>
 );
 

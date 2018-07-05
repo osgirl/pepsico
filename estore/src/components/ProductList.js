@@ -13,12 +13,20 @@ class ProductList extends Component {
     };
   }
 
+  saleItem = id => {
+    let index = this.state.products.findIndex(p => p.id == id);
+    this.state.products[index].stock--;
+    this.setState({ products: this.state.products });
+  };
+
   render() {
     const { products } = this.state;
     return (
       <div>
         <h1>Products</h1>
-        {products.map(p => <ProductListItem product={p} />)}
+        {products.map(p => (
+          <ProductListItem product={p} onSell={this.saleItem} />
+        ))}
       </div>
     );
   }
