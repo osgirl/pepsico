@@ -15,7 +15,10 @@ class ProductList extends Component {
 
   saleItem = id => {
     let index = this.state.products.findIndex(p => p.id == id);
-    this.state.products[index].stock--;
+    this.state.products[index] = {
+      ...this.state.products[index],
+      stock: this.state.products[index].stock - 1
+    };
     this.setState({ products: this.state.products });
   };
 
@@ -24,12 +27,16 @@ class ProductList extends Component {
     return (
       <div>
         <h1>Products</h1>
+        {/* */}
         {products.map(p => (
-          <ProductListItem product={p} onSell={this.saleItem} />
+          <ProductListItem key={p.id} product={p} onSell={this.saleItem} />
         ))}
       </div>
     );
   }
 }
+
+ProductList.propTypes = {};
+ProductList.defaultProps = {};
 
 export default ProductList;

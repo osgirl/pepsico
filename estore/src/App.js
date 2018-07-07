@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./Header";
 import ProductList from "./components/ProductList";
+import AddProduct from "./components/AddProduct";
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends Component {
     return (
       <div id="header" className="container">
         <Header />
+        <AddProduct />
         <ProductList />
       </div>
     );
