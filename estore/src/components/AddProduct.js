@@ -16,43 +16,47 @@ class AddProduct extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <fieldset>
-          <legend>Add AddProduct</legend>
-          <form
-            onSubmit={e => {
-              console.log(this.state, this.priceRef.value);
-              e.preventDefault();
-            }}
-          >
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={this.state.title.toUpperCase()}
-              onChange={e => {
-                console.log(e.target.value);
-                this.setState({ title: e.target.value });
+    if (!this.props.isAuthenticated) {
+      return <h2>You are not authorized to add product</h2>;
+    } else {
+      return (
+        <div>
+          <fieldset>
+            <legend>Add AddProduct</legend>
+            <form
+              onSubmit={e => {
+                console.log(this.state, this.priceRef.value);
+                e.preventDefault();
               }}
-            />
-            <label htmlFor="price">Price</label>
-            <input type="number" name="price" ref={this.setPriceRef} />
-            <label htmlFor="stock">Stock</label>
-            <input
-              type="number"
-              name="stock"
-              value={this.state.stock}
-              onChange={e => {
-                console.log(e.target.value);
-                this.setState({ stock: e.target.value });
-              }}
-            />
-            <input type="submit" value="Submit" />
-          </form>
-        </fieldset>
-      </div>
-    );
+            >
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                value={this.state.title.toUpperCase()}
+                onChange={e => {
+                  console.log(e.target.value);
+                  this.setState({ title: e.target.value });
+                }}
+              />
+              <label htmlFor="price">Price</label>
+              <input type="number" name="price" ref={this.setPriceRef} />
+              <label htmlFor="stock">Stock</label>
+              <input
+                type="number"
+                name="stock"
+                value={this.state.stock}
+                onChange={e => {
+                  console.log(e.target.value);
+                  this.setState({ stock: e.target.value });
+                }}
+              />
+              <input type="submit" value="Submit" />
+            </form>
+          </fieldset>
+        </div>
+      );
+    }
   }
 }
 

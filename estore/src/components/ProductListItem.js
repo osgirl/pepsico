@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class ProductListItem extends React.PureComponent {
   static propTypes = {
@@ -40,7 +41,9 @@ class ProductListItem extends React.PureComponent {
           backgroundColor: this.state.mouseOver ? "yellow" : null
         }}
       >
-        <h2>{product.title}</h2>
+        <h2>
+          <Link to={`/products/${product.id}`}>{product.title}</Link>
+        </h2>
         <h3>{product.price}</h3>
         <h4>{product.stock}</h4>
         <button onClick={() => onSell(product.id)}>SELL</button>
