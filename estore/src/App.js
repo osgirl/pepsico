@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./Header";
-
 import { Link } from "react-router-dom";
-
 import Routes from "./components/Routes";
 
 class App extends Component {

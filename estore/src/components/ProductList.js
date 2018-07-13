@@ -1,29 +1,26 @@
 import React, { Component } from "react";
 import ProductListItem from "./ProductListItem";
+import {
+  getProductsActionCreator,
+  saleProductActionCreator
+} from "../actionCreators/product";
+import { connect } from "react-redux";
 
 class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      products: [
-        { id: 1, title: "mac book pro", price: 2000, stock: 20 },
-        { id: 2, title: "dell xps", price: 1300, stock: 40 },
-        { id: 3, title: "hp ultra book", price: 1000, stock: 27 }
-      ]
-    };
+  }
+
+  componentDidMount() {
+    this.props.getProducts();
   }
 
   saleItem = id => {
-    let index = this.state.products.findIndex(p => p.id == id);
-    this.state.products[index] = {
-      ...this.state.products[index],
-      stock: this.state.products[index].stock - 1
-    };
-    this.setState({ products: this.state.products });
+    this.props.saleProduct(id);
   };
 
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     return (
       <div>
         <h1>Products</h1>
@@ -39,4 +36,20 @@ class ProductList extends Component {
 ProductList.propTypes = {};
 ProductList.defaultProps = {};
 
-export default ProductList;
+function mapStateToProps(state) {
+  return {
+    products: state.products
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getProducts: () => dispatch(getProductsActionCreator()),
+    saleProduct: id => dispatch(saleProductActionCreator(id))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductList);
