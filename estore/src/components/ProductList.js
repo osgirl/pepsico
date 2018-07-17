@@ -13,6 +13,9 @@ class ProductList extends Component {
 
   componentDidMount() {
     this.props.getProducts();
+    this.props.getProducts();
+    this.props.getProducts();
+    this.props.getProducts();
   }
 
   saleItem = id => {
@@ -21,12 +24,19 @@ class ProductList extends Component {
 
   render() {
     const { products } = this.props;
+
     return (
       <div>
         <h1>Products</h1>
-        {/* */}
+        {this.props.isLoading && (
+          <img src="http://www.betterbutter.in/images/loading_recipe_image.gif" />
+        )}
         {products.map(p => (
-          <ProductListItem key={p.id} product={p} onSell={this.saleItem} />
+          <ProductListItem
+            key={p.id}
+            product={{ ...p }}
+            onSell={this.saleItem}
+          />
         ))}
       </div>
     );
@@ -38,7 +48,8 @@ ProductList.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    products: state.products,
+    isLoading: state.isLoading
   };
 }
 

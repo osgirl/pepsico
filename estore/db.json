@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "products": [
+    { "id": 1, "title": "mac book pro", "price": 2000, "stock": 20 },
+    { "id": 2, "title": "dell xps", "price": 1300, "stock": 40 },
+    { "id": 3, "title": "hp ultra book", "price": 1000, "stock": 27 }
+  ]
+}

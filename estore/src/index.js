@@ -3,11 +3,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import productReducer from "./reducers/product";
+import logger from "redux-logger";
+import createSagaMiddleware from "redux-saga";
+import { productWatcher } from "./sagas/product";
 
-const store = createStore(productReducer);
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+  productReducer,
+  applyMiddleware(sagaMiddleware, logger)
+);
+
+sagaMiddleware.run(productWatcher);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 class ProductListItem extends React.PureComponent {
   static propTypes = {
@@ -23,17 +24,20 @@ class ProductListItem extends React.PureComponent {
 
   constructor() {
     super();
-    console.log("constructor");
+    //console.log("constructor");
     this.state = { mouseOver: false };
   }
 
   render() {
-    console.log("render");
+    //console.log("render");
+
+    {
+      /*  onMouseEnter={e => this.setState({ mouseOver: true })}
+  onMouseLeave={e => this.setState({ mouseOver: false })}*/
+    }
     let { product, onSell } = this.props;
     return (
       <div
-        onMouseEnter={e => this.setState({ mouseOver: true })}
-        onMouseLeave={e => this.setState({ mouseOver: false })}
         style={{
           margin: "10px",
           padding: "20px",
@@ -46,22 +50,28 @@ class ProductListItem extends React.PureComponent {
         </h2>
         <h3>{product.price}</h3>
         <h4>{product.stock}</h4>
-        <button onClick={() => onSell(product.id)}>SELL</button>
+        <Button
+          variant="raised"
+          color="secondary"
+          onClick={() => onSell(product.id)}
+        >
+          SELL
+        </Button>
       </div>
     );
   }
 
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
+  // componentDidMount() {
+  //   console.log("componentDidMount");
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate");
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log("componentDidUpdate");
+  // }
 
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
-  }
+  // componentWillUnmount() {
+  //   console.log("componentWillUnmount");
+  // }
 }
 
 export default ProductListItem;
