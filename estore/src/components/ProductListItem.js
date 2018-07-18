@@ -2,6 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import CardHeader from "@material-ui/core/CardHeader";
+
+const styles = {
+  item: {
+    margin: "10px",
+    padding: "20px",
+    border: "1px solid grey"
+  },
+  root: {
+    margin: "15px"
+  }
+};
 
 class ProductListItem extends React.PureComponent {
   static propTypes = {
@@ -35,29 +52,23 @@ class ProductListItem extends React.PureComponent {
       /*  onMouseEnter={e => this.setState({ mouseOver: true })}
   onMouseLeave={e => this.setState({ mouseOver: false })}*/
     }
-    let { product, onSell } = this.props;
+    let { product, onSell, classes } = this.props;
+    console.log(classes);
     return (
-      <div
-        style={{
-          margin: "10px",
-          padding: "20px",
-          border: "1px solid grey",
-          backgroundColor: this.state.mouseOver ? "yellow" : null
-        }}
-      >
-        <h2>
-          <Link to={`/products/${product.id}`}>{product.title}</Link>
-        </h2>
-        <h3>{product.price}</h3>
-        <h4>{product.stock}</h4>
-        <Button
-          variant="raised"
-          color="secondary"
-          onClick={() => onSell(product.id)}
-        >
-          SELL
-        </Button>
-      </div>
+      <Card className={classes.root}>
+        <CardHeader title={product.title} />
+        <Typography variant="display3">{product.price}</Typography>
+        <Typography>{product.stock}</Typography>
+        <CardActions>
+          <Button
+            variant="raised"
+            color="secondary"
+            onClick={() => onSell(product.id)}
+          >
+            SELL
+          </Button>
+        </CardActions>
+      </Card>
     );
   }
 
@@ -74,4 +85,4 @@ class ProductListItem extends React.PureComponent {
   // }
 }
 
-export default ProductListItem;
+export default withStyles(styles)(ProductListItem);
