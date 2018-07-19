@@ -33,6 +33,9 @@ class App extends Component {
               <li>
                 <Link to="/products/new">Add Product</Link>
               </li>
+              <li>
+                <Link to="/table">Table</Link>
+              </li>
             </ul>
           </nav>
         )}

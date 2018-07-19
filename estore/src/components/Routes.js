@@ -4,6 +4,7 @@ import ProductList from "./ProductList";
 import AddProduct from "./AddProduct";
 import NotFound from "./NotFound";
 import ProductDetail from "./ProductDetail";
+import ProductTable from "./ProductTable";
 function MyComp() {
   return <h1>My Comp</h1>;
 }
@@ -24,6 +25,7 @@ class Routes extends Component {
           )}
         />
         <Route exact path="/my" component={MyComp} />
+        <Route path="/table" component={ProductTable} />
         <Route exact path="/products/:id" component={ProductDetail} />
         <Route
           render={props => (

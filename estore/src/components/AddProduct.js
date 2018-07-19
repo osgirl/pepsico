@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import "./AddProduct.css";
+//import "./AddProduct.css";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
 
 class AddProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      stock: 0
+      stock: 0,
+      categories: ["Mobile", "Desktop", "Laptop"]
     };
     this.priceRef = null;
   }
@@ -29,28 +32,21 @@ class AddProduct extends Component {
                 e.preventDefault();
               }}
             >
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                name="title"
-                value={this.state.title.toUpperCase()}
-                onChange={e => {
-                  console.log(e.target.value);
-                  this.setState({ title: e.target.value });
-                }}
-              />
-              <label htmlFor="price">Price</label>
-              <input type="number" name="price" ref={this.setPriceRef} />
-              <label htmlFor="stock">Stock</label>
-              <input
-                type="number"
-                name="stock"
-                value={this.state.stock}
-                onChange={e => {
-                  console.log(e.target.value);
-                  this.setState({ stock: e.target.value });
-                }}
-              />
+              <TextField label="Title" fullWidth />
+              <TextField label="Price" fullWidth type="number" />
+              <TextField label="stock" fullWidth type="number" />
+              <TextField
+                label="category"
+                select
+                fullWidth
+                SelectProps={{ native: true }}
+              >
+                {this.state.categories.map(option => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
               <input type="submit" value="Submit" />
             </form>
           </fieldset>
